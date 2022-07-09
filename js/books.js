@@ -22,4 +22,16 @@ function addBookToLibrary() {
   console.log("New book added: " + newBook.info());
 }
 
+function displayBookPage() {
+  document
+    .querySelectorAll(".book")
+    .forEach((book) => book.parentNode.removeChild(book));
+}
+
 addBookButton.addEventListener("click", addBookToLibrary);
+
+const bookA = new Book("The Hobbit", "J.R.R. Tolkien", 295, "Not read");
+const bookB = new Book("The Hobbit", "J.R.R. Tolkien", 295, "Not read");
+const bookC = new Book("The Hobbit", "J.R.R. Tolkien", 295, "Not read");
+
+myLibrary.push(bookA, bookB, bookC);
