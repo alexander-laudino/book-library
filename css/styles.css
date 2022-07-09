@@ -8,3 +8,16 @@
   display: grid;
   grid-template-rows: 1fr 9fr;
 }
+
+.header {
+  border-bottom: 1px solid black;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 2fr 8fr;
+}
+
+.sidebar {
+  border-right: 1px solid black;
+}
