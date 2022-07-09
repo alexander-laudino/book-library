@@ -13,7 +13,13 @@ Book.prototype.info = function () {
 };
 
 function addBookToLibrary() {
-  console.log("Add book");
+  let title = prompt("Enter book title:");
+  let author = prompt("Enter book author:");
+  let pages = parseInt(prompt("Enter book pages:"));
+  let read = prompt("Have book been read?");
+  let newBook = new Book(title, author, pages, read);
+  myLibrary.push(newBook);
+  console.log("New book added: " + newBook.info());
 }
 
 addBookButton.addEventListener("click", addBookToLibrary);
