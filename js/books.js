@@ -1,4 +1,5 @@
 let myLibrary = [];
+const addBookButton = document.getElementById("addBook");
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -10,3 +11,9 @@ function Book(title, author, pages, read) {
 Book.prototype.info = function () {
   return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
 };
+
+function addBookToLibrary() {
+  console.log("Add book");
+}
+
+addBookButton.addEventListener("click", addBookToLibrary);
