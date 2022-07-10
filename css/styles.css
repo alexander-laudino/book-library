@@ -31,6 +31,10 @@
   grid-template-rows: 1fr 6fr;
 }
 
+.content-nav {
+  border-bottom: 1px solid black;
+}
+
 .page {
   padding: 50px;
   display: grid;
@@ -41,4 +45,26 @@
 
 .book {
   border: 1px solid black;
+}
+
+.newBookPopup {
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.formPopup {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 15%;
+  transform: translate(-50%, 5%);
+  border: 3px solid #999999;
+  z-index: 9;
+}
+
+.formContainer {
+  max-width: 300px;
+  padding: 20px;
+  background-color: #fff;
 }
