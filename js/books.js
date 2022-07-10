@@ -1,5 +1,6 @@
 let myLibrary = [];
 const addBookButton = document.getElementById("addBook");
+const page = document.querySelector(".page");
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -16,16 +17,28 @@ function addBookToLibrary() {
   let title = prompt("Enter book title:");
   let author = prompt("Enter book author:");
   let pages = parseInt(prompt("Enter book pages:"));
-  let read = prompt("Have book been read?");
+  let read = prompt("Has book been read?");
   let newBook = new Book(title, author, pages, read);
   myLibrary.push(newBook);
   console.log("New book added: " + newBook.info());
 }
 
-function displayBookPage() {
+function displayBookPage(pageNum = 0) {
   document
     .querySelectorAll(".book")
     .forEach((book) => book.parentNode.removeChild(book));
+  for (let i = pageNum * 12; i < pageNum * 12 + 12; i++) {
+    let currBook = myLibrary[i];
+    if (currBook === undefined) {
+      continue;
+    } else {
+      let bookDiv = document.createElement("div");
+      bookDiv.setAttribute("class", "book");
+      bookDiv.setAttribute("id", `book${i}`);
+      bookDiv.textContent = currBook.title;
+      page.appendChild(bookDiv);
+    }
+  }
 }
 
 addBookButton.addEventListener("click", addBookToLibrary);
