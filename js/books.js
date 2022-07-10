@@ -1,5 +1,7 @@
 let myLibrary = [];
 const addBookButton = document.getElementById("addBook");
+const cancelAddBookButton = document.getElementById("cancelAddBook");
+const addToLibraryButton = document.getElementById("addToLibrary");
 const page = document.querySelector(".page");
 
 function Book(title, author, pages, read) {
@@ -21,6 +23,8 @@ function addBookToLibrary() {
   let newBook = new Book(title, author, pages, read);
   myLibrary.push(newBook);
   console.log("New book added: " + newBook.info());
+  closeForm();
+  displayBookPage();
 }
 
 function displayBookPage(pageNum = 0) {
@@ -41,7 +45,16 @@ function displayBookPage(pageNum = 0) {
   }
 }
 
-addBookButton.addEventListener("click", addBookToLibrary);
+function openForm() {
+  document.getElementById("popupForm").style.display = "block";
+}
+function closeForm() {
+  document.getElementById("popupForm").style.display = "none";
+}
+
+addBookButton.addEventListener("click", openForm);
+cancelAddBookButton.addEventListener("click", closeForm);
+addToLibraryButton.addEventListener("click", addBookToLibrary);
 
 const bookA = new Book("The Hobbit", "J.R.R. Tolkien", 295, "Not read");
 const bookB = new Book("The Hobbit", "J.R.R. Tolkien", 295, "Not read");
