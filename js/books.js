@@ -28,7 +28,13 @@ function addBookToLibrary() {
   displayBookPage();
 }
 
-function removeBookFromLibrary(ev) {}
+function removeBookFromLibrary(ev) {
+  let bookIndex = parseInt(
+    ev.target.parentNode.parentNode.getAttribute("data-index")
+  );
+  myLibrary.splice(bookIndex, 1);
+  displayBookPage();
+}
 
 function displayBookPage(pageNum = 0) {
   document
