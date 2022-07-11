@@ -28,6 +28,8 @@ function addBookToLibrary() {
   displayBookPage();
 }
 
+function removeBookFromLibrary(ev) {}
+
 function displayBookPage(pageNum = 0) {
   document
     .querySelectorAll(".book")
@@ -40,6 +42,7 @@ function displayBookPage(pageNum = 0) {
       let bookDiv = document.createElement("div");
       bookDiv.setAttribute("class", "book");
       bookDiv.setAttribute("id", `book${i}`);
+      bookDiv.setAttribute("data-index", `${i}`);
       let bookTitle = document.createElement("h3");
       bookTitle.setAttribute("class", "bookTitle");
       bookTitle.textContent = currBook.title;
@@ -54,6 +57,15 @@ function displayBookPage(pageNum = 0) {
       let bookRead = document.createElement("p");
       bookRead.textContent = `Book read: ${currBook.read}`;
       bookDiv.appendChild(bookRead);
+      let bookFunctionDiv = document.createElement("div");
+      bookFunctionDiv.setAttribute("class", "bookFunctions");
+      let removeBookButton = document.createElement("button");
+      removeBookButton.setAttribute("type", "button");
+      removeBookButton.setAttribute("class", "removeBook");
+      removeBookButton.textContent = "Remove from Library";
+      removeBookButton.addEventListener("click", removeBookFromLibrary, false);
+      bookFunctionDiv.appendChild(removeBookButton);
+      bookDiv.appendChild(bookFunctionDiv);
       page.appendChild(bookDiv);
     }
   }
