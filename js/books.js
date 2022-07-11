@@ -45,36 +45,61 @@ function displayBookPage(pageNum = 0) {
     if (currBook === undefined) {
       continue;
     } else {
-      let bookDiv = document.createElement("div");
-      bookDiv.setAttribute("class", "book");
-      bookDiv.setAttribute("id", `book${i}`);
-      bookDiv.setAttribute("data-index", `${i}`);
-      let bookTitle = document.createElement("h3");
-      bookTitle.setAttribute("class", "bookTitle");
-      bookTitle.textContent = currBook.title;
-      bookDiv.appendChild(bookTitle);
-      let bookAuthor = document.createElement("h4");
-      bookAuthor.setAttribute("class", "bookAuthor");
-      bookAuthor.textContent = currBook.author;
-      bookDiv.appendChild(bookAuthor);
-      let bookPages = document.createElement("p");
-      bookPages.textContent = `Pages: ${currBook.pages}`;
-      bookDiv.appendChild(bookPages);
-      let bookRead = document.createElement("p");
-      bookRead.textContent = `Book read: ${currBook.read}`;
-      bookDiv.appendChild(bookRead);
-      let bookFunctionDiv = document.createElement("div");
-      bookFunctionDiv.setAttribute("class", "bookFunctions");
-      let removeBookButton = document.createElement("button");
-      removeBookButton.setAttribute("type", "button");
-      removeBookButton.setAttribute("class", "removeBook");
-      removeBookButton.textContent = "Remove from Library";
-      removeBookButton.addEventListener("click", removeBookFromLibrary, false);
-      bookFunctionDiv.appendChild(removeBookButton);
-      bookDiv.appendChild(bookFunctionDiv);
+      let bookDiv = createBookDiv(i);
+      addBookTitle(currBook, bookDiv);
+      addBookAuthor(currBook, bookDiv);
+      addBookPages(currBook, bookDiv);
+      addIsBookRead(currBook, bookDiv);
+      addBookFunctionButtons(bookDiv);
       page.appendChild(bookDiv);
     }
   }
+}
+
+function addBookFunctionButtons(bookDiv) {
+  let bookFunctionDiv = document.createElement("div");
+  bookFunctionDiv.setAttribute("class", "bookFunctions");
+  let removeBookButton = document.createElement("button");
+  removeBookButton.setAttribute("type", "button");
+  removeBookButton.setAttribute("class", "removeBook");
+  removeBookButton.textContent = "Remove from Library";
+  removeBookButton.addEventListener("click", removeBookFromLibrary, false);
+  bookFunctionDiv.appendChild(removeBookButton);
+  bookDiv.appendChild(bookFunctionDiv);
+}
+
+function addIsBookRead(currBook, bookDiv) {
+  let bookRead = document.createElement("p");
+  bookRead.textContent = `Book read: ${currBook.read}`;
+  bookDiv.appendChild(bookRead);
+}
+
+function addBookPages(currBook, bookDiv) {
+  let bookPages = document.createElement("p");
+  bookPages.textContent = `Pages: ${currBook.pages}`;
+  bookDiv.appendChild(bookPages);
+}
+
+function addBookAuthor(currBook, bookDiv) {
+  let bookAuthor = document.createElement("h4");
+  bookAuthor.setAttribute("class", "bookAuthor");
+  bookAuthor.textContent = currBook.author;
+  bookDiv.appendChild(bookAuthor);
+}
+
+function addBookTitle(currBook, bookDiv) {
+  let bookTitle = document.createElement("h3");
+  bookTitle.setAttribute("class", "bookTitle");
+  bookTitle.textContent = currBook.title;
+  bookDiv.appendChild(bookTitle);
+}
+
+function createBookDiv(i) {
+  let bookDiv = document.createElement("div");
+  bookDiv.setAttribute("class", "book");
+  bookDiv.setAttribute("id", `book${i}`);
+  bookDiv.setAttribute("data-index", `${i}`);
+  return bookDiv;
 }
 
 function openForm() {
