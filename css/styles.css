@@ -67,4 +67,18 @@
   max-width: 300px;
   padding: 20px;
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.inputContainer {
+  display: flex;
+}
+
+fieldset {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
 }
