@@ -56,9 +56,3 @@ function closeForm() {
 addBookButton.addEventListener("click", openForm);
 cancelAddBookButton.addEventListener("click", closeForm);
 addToLibraryButton.addEventListener("click", addBookToLibrary);
-
-const bookA = new Book("The Hobbit", "J.R.R. Tolkien", 295, "Not read");
-const bookB = new Book("The Hobbit", "J.R.R. Tolkien", 295, "Not read");
-const bookC = new Book("The Hobbit", "J.R.R. Tolkien", 295, "Not read");
-
-myLibrary.push(bookA, bookB, bookC);
