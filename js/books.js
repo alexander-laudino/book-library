@@ -40,7 +40,20 @@ function displayBookPage(pageNum = 0) {
       let bookDiv = document.createElement("div");
       bookDiv.setAttribute("class", "book");
       bookDiv.setAttribute("id", `book${i}`);
-      bookDiv.textContent = currBook.title;
+      let bookTitle = document.createElement("h3");
+      bookTitle.setAttribute("class", "bookTitle");
+      bookTitle.textContent = currBook.title;
+      bookDiv.appendChild(bookTitle);
+      let bookAuthor = document.createElement("h4");
+      bookAuthor.setAttribute("class", "bookAuthor");
+      bookAuthor.textContent = currBook.author;
+      bookDiv.appendChild(bookAuthor);
+      let bookPages = document.createElement("p");
+      bookPages.textContent = `Pages: ${currBook.pages}`;
+      bookDiv.appendChild(bookPages);
+      let bookRead = document.createElement("p");
+      bookRead.textContent = `Book read: ${currBook.read}`;
+      bookDiv.appendChild(bookRead);
       page.appendChild(bookDiv);
     }
   }
