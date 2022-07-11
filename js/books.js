@@ -18,8 +18,8 @@ Book.prototype.info = function () {
 function addBookToLibrary() {
   let title = document.getElementById("bookTitle").value;
   let author = document.getElementById("bookAuthor").value;
-  let pages = parseInt(document.getElementById("bookAuthor").value);
-  let read = document.getElementById("bookAuthor").value;
+  let pages = document.getElementById("bookPages").value;
+  let read = document.querySelector('input[name="isBookRead"]:checked').value;
   let newBook = new Book(title, author, pages, read);
   myLibrary.push(newBook);
   console.log("New book added: " + newBook.info());
