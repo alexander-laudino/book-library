@@ -16,14 +16,15 @@ Book.prototype.info = function () {
 };
 
 function addBookToLibrary() {
-  let title = prompt("Enter book title:");
-  let author = prompt("Enter book author:");
-  let pages = parseInt(prompt("Enter book pages:"));
-  let read = prompt("Has book been read?");
+  let title = document.getElementById("bookTitle").value;
+  let author = document.getElementById("bookAuthor").value;
+  let pages = parseInt(document.getElementById("bookAuthor").value);
+  let read = document.getElementById("bookAuthor").value;
   let newBook = new Book(title, author, pages, read);
   myLibrary.push(newBook);
   console.log("New book added: " + newBook.info());
   closeForm();
+  document.querySelector(".formContainer").reset();
   displayBookPage();
 }
 
