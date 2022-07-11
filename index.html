@@ -39,6 +39,36 @@
     <div class="formPopup" id="popupForm">
       <form action="./index.html" method="post" class="formContainer">
         <h2>Add Book Information</h2>
+        <div class="inputContainer">
+          <label for="bookTitle">Book Title: </label>
+          <input type="text" name="bookTitle" id="bookTitle">
+        </div>        
+
+        <div class="inputContainer">
+          <label for="bookAuthor">Book Author: </label>
+          <input type="text" name="bookAuthor" id="bookAuthor">
+        </div>
+
+        <div class="inputContainer">
+          <label for="bookPages">Book Pages: </label>
+          <input type="text" name="bookPages" id="bookPages">
+        </div>
+
+        <fieldset>
+          <legend>Have you read the book?</legend>
+        
+          <div>
+            <input type="radio" name="isBookRead" id="yes" value="yes">
+            <label for="yes">Yes</label>
+          </div>
+        
+          <div>
+            <input type="radio" name="isBookRead" id="no" value="no">
+            <label for="no">No</label>
+          </div>        
+        
+        </fieldset>
+
         <button type="button" id="addToLibrary">Add Book to Library</button>
         <button type="button" id="cancelAddBook">Cancel</button>
       </form>
