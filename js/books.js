@@ -15,6 +15,11 @@ Book.prototype.info = function () {
   return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
 };
 
+Book.prototype.changeReadStatus = function () {
+  this.read = this.read === "yes" ? "no" : "yes";
+  displayBookPage();
+};
+
 function addBookToLibrary() {
   let title = document.getElementById("bookTitle").value;
   let author = document.getElementById("bookAuthor").value;
@@ -36,15 +41,12 @@ function removeBookFromLibrary(e) {
   displayBookPage();
 }
 
-function changeReadStatus(e) {
-  let status = e.target.parentNode.parentNode
-    .querySelector(".isBookRead")
-    .textContent.split(":")[1]
-    .trimStart();
-  status = status === "yes" ? "no" : "yes";
-  e.target.parentNode.parentNode.querySelector(
-    ".isBookRead"
-  ).textContent = `Book read: ${status}`;
+function changeReadStatusOnPage(e) {
+  let bookIndex = parseInt(
+    e.target.parentNode.parentNode.getAttribute("data-index")
+  );
+  myLibrary[bookIndex].changeReadStatus();
+  displayBookPage();
 }
 
 function displayBookPage(pageNum = 0) {
@@ -122,7 +124,8 @@ function addChangeReadStatusButton() {
   changeReadStatusButton.setAttribute("type", "button");
   changeReadStatusButton.setAttribute("class", "changeReadStatus");
   changeReadStatusButton.textContent = "Change Read Status";
-  changeReadStatusButton.addEventListener("click", changeReadStatus), false;
+  changeReadStatusButton.addEventListener("click", changeReadStatusOnPage),
+    false;
   return changeReadStatusButton;
 }
 
