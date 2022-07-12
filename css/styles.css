@@ -38,7 +38,7 @@
 .page {
   padding: 50px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(4, minmax(250px, 1fr));
   grid-template-rows: repeat(3, minmax(150px, 1fr));
   gap: 25px;
 }
@@ -47,8 +47,17 @@
   border: 1px solid black;
   padding: 15px;
   display: grid;
-  grid-template-rows: 2fr 1.5fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr .75fr .75fr 1fr;
   gap: 5px;
+}
+
+.bookFunctions {
+  display: flex;
+  gap: 5px;
+}
+
+.bookFunctions > button {
+  width: 50%;
 }
 
 .newBookPopup {
