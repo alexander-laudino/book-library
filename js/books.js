@@ -28,12 +28,23 @@ function addBookToLibrary() {
   displayBookPage();
 }
 
-function removeBookFromLibrary(ev) {
+function removeBookFromLibrary(e) {
   let bookIndex = parseInt(
-    ev.target.parentNode.parentNode.getAttribute("data-index")
+    e.target.parentNode.parentNode.getAttribute("data-index")
   );
   myLibrary.splice(bookIndex, 1);
   displayBookPage();
+}
+
+function changeReadStatus(e) {
+  let status = e.target.parentNode.parentNode
+    .querySelector(".isBookRead")
+    .textContent.split(":")[1]
+    .trimStart();
+  status = status === "yes" ? "no" : "yes";
+  e.target.parentNode.parentNode.querySelector(
+    ".isBookRead"
+  ).textContent = `Book read: ${status}`;
 }
 
 function displayBookPage(pageNum = 0) {
@@ -57,19 +68,36 @@ function displayBookPage(pageNum = 0) {
 }
 
 function addBookFunctionButtons(bookDiv) {
+  let bookFunctionDiv = createBookFunctionsDiv();
+  let removeBookButton = addRemoveBookButton();
+  let changeReadStatusButton = document.createElement("button");
+  changeReadStatusButton.setAttribute("type", "button");
+  changeReadStatusButton.setAttribute("class", "changeReadStatus");
+  changeReadStatusButton.textContent = "Change Read Status";
+  changeReadStatusButton.addEventListener("click", changeReadStatus), false;
+  bookFunctionDiv.appendChild(removeBookButton);
+  bookFunctionDiv.appendChild(changeReadStatusButton);
+  bookDiv.appendChild(bookFunctionDiv);
+}
+
+function createBookFunctionsDiv() {
   let bookFunctionDiv = document.createElement("div");
   bookFunctionDiv.setAttribute("class", "bookFunctions");
+  return bookFunctionDiv;
+}
+
+function addRemoveBookButton() {
   let removeBookButton = document.createElement("button");
   removeBookButton.setAttribute("type", "button");
   removeBookButton.setAttribute("class", "removeBook");
   removeBookButton.textContent = "Remove from Library";
   removeBookButton.addEventListener("click", removeBookFromLibrary, false);
-  bookFunctionDiv.appendChild(removeBookButton);
-  bookDiv.appendChild(bookFunctionDiv);
+  return removeBookButton;
 }
 
 function addIsBookRead(currBook, bookDiv) {
   let bookRead = document.createElement("p");
+  bookRead.setAttribute("class", "isBookRead");
   bookRead.textContent = `Book read: ${currBook.read}`;
   bookDiv.appendChild(bookRead);
 }
