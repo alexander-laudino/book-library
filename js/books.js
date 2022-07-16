@@ -45,6 +45,7 @@ function changeReadStatusOnPage(e) {
 }
 
 function displayBookPage(pageNum = 0) {
+  const page = document.querySelector(".page");
   document
     .querySelectorAll(".book")
     .forEach((book) => book.parentNode.removeChild(book));
