@@ -47,7 +47,7 @@
   border: 1px solid black;
   padding: 15px;
   display: grid;
-  grid-template-rows: 1fr 1fr .75fr .75fr 1fr;
+  grid-template-rows: 1.5fr .75fr .75fr .75fr 1fr;
   gap: 5px;
 }
 
