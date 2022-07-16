@@ -23,7 +23,7 @@ function addBookToLibrary() {
   let read = document.querySelector('input[name="isBookRead"]:checked').value;
   let newBook = new Book(title, author, pages, read);
   myLibrary.push(newBook);
-  closeForm();
+  FormController.closeForm();
   document.querySelector(".formContainer").reset();
   displayBookPage();
 }
@@ -134,13 +134,15 @@ function addRemoveBookButton() {
   return removeBookButton;
 }
 
-function openForm() {
-  document.getElementById("popupForm").style.display = "block";
-}
-function closeForm() {
-  document.getElementById("popupForm").style.display = "none";
+class FormController {
+  static openForm() {
+    document.getElementById("popupForm").style.display = "block";
+  }
+  static closeForm() {
+    document.getElementById("popupForm").style.display = "none";
+  }
 }
 
-addBookButton.addEventListener("click", openForm);
-cancelAddBookButton.addEventListener("click", closeForm);
+addBookButton.addEventListener("click", FormController.openForm);
+cancelAddBookButton.addEventListener("click", FormController.closeForm);
 addToLibraryButton.addEventListener("click", addBookToLibrary);
