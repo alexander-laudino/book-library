@@ -13,10 +13,6 @@ class Book {
   }
 }
 
-Book.prototype.info = function () {
-  return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
-};
-
 Book.prototype.changeReadStatus = function () {
   this.read = this.read === "yes" ? "no" : "yes";
   displayBookPage();
@@ -29,7 +25,6 @@ function addBookToLibrary() {
   let read = document.querySelector('input[name="isBookRead"]:checked').value;
   let newBook = new Book(title, author, pages, read);
   myLibrary.push(newBook);
-  console.log("New book added: " + newBook.info());
   closeForm();
   document.querySelector(".formContainer").reset();
   displayBookPage();
