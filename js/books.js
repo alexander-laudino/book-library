@@ -2,7 +2,6 @@ let myLibrary = [];
 const addBookButton = document.getElementById("addBook");
 const cancelAddBookButton = document.getElementById("cancelAddBook");
 const addToLibraryButton = document.getElementById("addToLibrary");
-const page = document.querySelector(".page");
 
 class Book {
   constructor(title, author, pages, read) {
@@ -11,12 +10,11 @@ class Book {
     this.pages = pages;
     this.read = read;
   }
-}
 
-Book.prototype.changeReadStatus = function () {
-  this.read = this.read === "yes" ? "no" : "yes";
-  displayBookPage();
-};
+  changeReadStatus() {
+    this.read = this.read === "yes" ? "no" : "yes";
+  }
+}
 
 function addBookToLibrary() {
   let title = document.getElementById("bookTitle").value;
