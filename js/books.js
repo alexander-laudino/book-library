@@ -1,7 +1,4 @@
 let myLibrary = [];
-const addBookButton = document.getElementById("addBook");
-const cancelAddBookButton = document.getElementById("cancelAddBook");
-const addToLibraryButton = document.getElementById("addToLibrary");
 
 class Book {
   constructor(title, author, pages, read) {
@@ -143,6 +140,18 @@ class FormController {
   }
 }
 
-addBookButton.addEventListener("click", FormController.openForm);
-cancelAddBookButton.addEventListener("click", FormController.closeForm);
-addToLibraryButton.addEventListener("click", addBookToLibrary);
+class PageButtonController {
+  static addListeners() {
+    document
+      .getElementById("addBook")
+      .addEventListener("click", FormController.openForm);
+    document
+      .getElementById("cancelAddBook")
+      .addEventListener("click", FormController.closeForm);
+    document
+      .getElementById("addToLibrary")
+      .addEventListener("click", addBookToLibrary);
+  }
+}
+
+PageButtonController.addListeners();
