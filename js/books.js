@@ -40,6 +40,32 @@ class TitleH3 {
   }
 }
 
+class AuthorH4 {
+  #h4;
+  constructor(author) {
+    this.#h4 = document.createElement("h4");
+    this.#h4.setAttribute("class", "bookAuthor");
+    this.#h4.textContent = author;
+  }
+
+  getH4() {
+    return this.#h4;
+  }
+}
+
+function addBookPages(currBook, bookDiv) {
+  let bookPages = document.createElement("p");
+  bookPages.textContent = `Pages: ${currBook.pages}`;
+  bookDiv.appendChild(bookPages);
+}
+
+function addIsBookRead(currBook, bookDiv) {
+  let bookRead = document.createElement("p");
+  bookRead.setAttribute("class", "isBookRead");
+  bookRead.textContent = `Book read: ${currBook.read}`;
+  bookDiv.appendChild(bookRead);
+}
+
 function addBookToLibrary() {
   let title = document.getElementById("bookTitle").value;
   let author = document.getElementById("bookAuthor").value;
@@ -87,26 +113,6 @@ function displayBookPage(pageNum = 0) {
       page.appendChild(bookDiv);
     }
   }
-}
-
-function addBookAuthor(currBook, bookDiv) {
-  let bookAuthor = document.createElement("h4");
-  bookAuthor.setAttribute("class", "bookAuthor");
-  bookAuthor.textContent = currBook.author;
-  bookDiv.appendChild(bookAuthor);
-}
-
-function addBookPages(currBook, bookDiv) {
-  let bookPages = document.createElement("p");
-  bookPages.textContent = `Pages: ${currBook.pages}`;
-  bookDiv.appendChild(bookPages);
-}
-
-function addIsBookRead(currBook, bookDiv) {
-  let bookRead = document.createElement("p");
-  bookRead.setAttribute("class", "isBookRead");
-  bookRead.textContent = `Book read: ${currBook.read}`;
-  bookDiv.appendChild(bookRead);
 }
 
 function addBookFunctionButtons(bookDiv) {
