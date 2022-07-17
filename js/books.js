@@ -120,13 +120,21 @@ class RemoveBookButton {
   }
 }
 
-function addBookFunctionButtons(bookDiv) {
-  let bookFunctionDiv = createBookFunctionsDiv();
-  let removeBookButton = addRemoveBookButton();
-  let changeReadStatusButton = addChangeReadStatusButton();
-  bookFunctionDiv.appendChild(removeBookButton);
-  bookFunctionDiv.appendChild(changeReadStatusButton);
-  bookDiv.appendChild(bookFunctionDiv);
+class BookFunctionButtonsDiv {
+  #div;
+  #removeButton;
+  #statusButton;
+  constructor() {
+    this.#div = new BookFunctionsDiv().getElement();
+    this.#removeButton = new RemoveBookButton().getElement();
+    this.#statusButton = new ReadStatusButton().getElement();
+    this.#div.appendChild(this.#removeButton);
+    this.#div.appendChild(this.#statusButton);
+  }
+
+  getElement() {
+    return this.#div;
+  }
 }
 
 function addBookToLibrary() {
