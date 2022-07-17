@@ -78,6 +78,46 @@ class BookReadPara {
   }
 }
 
+class BookFunctionsDiv {
+  #div;
+  constructor() {
+    this.#div = document.createElement("div");
+    this.#div.setAttribute("class", "bookFunctions");
+  }
+
+  getElement() {
+    return this.#div;
+  }
+}
+
+function addChangeReadStatusButton() {
+  let changeReadStatusButton = document.createElement("button");
+  changeReadStatusButton.setAttribute("type", "button");
+  changeReadStatusButton.setAttribute("class", "changeReadStatus");
+  changeReadStatusButton.textContent = "Change Read Status";
+  changeReadStatusButton.addEventListener("click", changeReadStatusOnPage),
+    false;
+  return changeReadStatusButton;
+}
+
+function addRemoveBookButton() {
+  let removeBookButton = document.createElement("button");
+  removeBookButton.setAttribute("type", "button");
+  removeBookButton.setAttribute("class", "removeBook");
+  removeBookButton.textContent = "Remove from Library";
+  removeBookButton.addEventListener("click", removeBookFromLibrary, false);
+  return removeBookButton;
+}
+
+function addBookFunctionButtons(bookDiv) {
+  let bookFunctionDiv = createBookFunctionsDiv();
+  let removeBookButton = addRemoveBookButton();
+  let changeReadStatusButton = addChangeReadStatusButton();
+  bookFunctionDiv.appendChild(removeBookButton);
+  bookFunctionDiv.appendChild(changeReadStatusButton);
+  bookDiv.appendChild(bookFunctionDiv);
+}
+
 function addBookToLibrary() {
   let title = document.getElementById("bookTitle").value;
   let author = document.getElementById("bookAuthor").value;
@@ -125,40 +165,6 @@ function displayBookPage(pageNum = 0) {
       page.appendChild(bookDiv);
     }
   }
-}
-
-function addBookFunctionButtons(bookDiv) {
-  let bookFunctionDiv = createBookFunctionsDiv();
-  let removeBookButton = addRemoveBookButton();
-  let changeReadStatusButton = addChangeReadStatusButton();
-  bookFunctionDiv.appendChild(removeBookButton);
-  bookFunctionDiv.appendChild(changeReadStatusButton);
-  bookDiv.appendChild(bookFunctionDiv);
-}
-
-function createBookFunctionsDiv() {
-  let bookFunctionDiv = document.createElement("div");
-  bookFunctionDiv.setAttribute("class", "bookFunctions");
-  return bookFunctionDiv;
-}
-
-function addChangeReadStatusButton() {
-  let changeReadStatusButton = document.createElement("button");
-  changeReadStatusButton.setAttribute("type", "button");
-  changeReadStatusButton.setAttribute("class", "changeReadStatus");
-  changeReadStatusButton.textContent = "Change Read Status";
-  changeReadStatusButton.addEventListener("click", changeReadStatusOnPage),
-    false;
-  return changeReadStatusButton;
-}
-
-function addRemoveBookButton() {
-  let removeBookButton = document.createElement("button");
-  removeBookButton.setAttribute("type", "button");
-  removeBookButton.setAttribute("class", "removeBook");
-  removeBookButton.textContent = "Remove from Library";
-  removeBookButton.addEventListener("click", removeBookFromLibrary, false);
-  return removeBookButton;
 }
 
 class FormController {
