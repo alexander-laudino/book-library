@@ -13,6 +13,8 @@ class Book {
   }
 }
 
+class TestLibraryDisplay {}
+
 function addBookToLibrary() {
   let title = document.getElementById("bookTitle").value;
   let author = document.getElementById("bookAuthor").value;
@@ -135,6 +137,16 @@ class FormController {
   static openForm() {
     document.getElementById("popupForm").style.display = "block";
   }
+
+  static getBookData() {
+    return [
+      document.getElementById("bookTitle").value,
+      document.getElementById("bookAuthor").value,
+      document.getElementById("bookPages").value,
+      document.querySelector('input[name="isBookRead"]:checked').value,
+    ];
+  }
+
   static closeForm() {
     document.getElementById("popupForm").style.display = "none";
   }
