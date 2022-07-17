@@ -105,13 +105,19 @@ class ReadStatusButton {
   }
 }
 
-function addRemoveBookButton() {
-  let removeBookButton = document.createElement("button");
-  removeBookButton.setAttribute("type", "button");
-  removeBookButton.setAttribute("class", "removeBook");
-  removeBookButton.textContent = "Remove from Library";
-  removeBookButton.addEventListener("click", removeBookFromLibrary, false);
-  return removeBookButton;
+class RemoveBookButton {
+  #button;
+  constructor() {
+    this.#button = document.createElement("button");
+    this.#button.setAttribute("type", "button");
+    this.#button.setAttribute("class", "removeBook");
+    this.#button.textContent = "Remove from Library";
+    this.#button.addEventListener("click", removeBookFromLibrary, false);
+  }
+
+  getElement() {
+    return this.#button;
+  }
 }
 
 function addBookFunctionButtons(bookDiv) {
