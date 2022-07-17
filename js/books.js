@@ -13,7 +13,19 @@ class Book {
   }
 }
 
-class TestLibraryDisplay {}
+class BookDiv {
+  #div;
+  constructor(i) {
+    this.#div = document.createElement("div");
+    this.#div.setAttribute("class", "book");
+    this.#div.setAttribute("id", `book${i}`);
+    this.#div.setAttribute("data-index", `${i}`);
+  }
+
+  getDiv() {
+    return this.#div;
+  }
+}
 
 function addBookToLibrary() {
   let title = document.getElementById("bookTitle").value;
@@ -22,7 +34,7 @@ function addBookToLibrary() {
   let read = document.querySelector('input[name="isBookRead"]:checked').value;
   let newBook = new Book(title, author, pages, read);
   myLibrary.push(newBook);
-  FormController.closeForm();
+  FormController.closeAddBookForm();
   document.querySelector(".formContainer").reset();
   displayBookPage();
 }
@@ -62,14 +74,6 @@ function displayBookPage(pageNum = 0) {
       page.appendChild(bookDiv);
     }
   }
-}
-
-function createBookDiv(i) {
-  let bookDiv = document.createElement("div");
-  bookDiv.setAttribute("class", "book");
-  bookDiv.setAttribute("id", `book${i}`);
-  bookDiv.setAttribute("data-index", `${i}`);
-  return bookDiv;
 }
 
 function addBookTitle(currBook, bookDiv) {
@@ -134,7 +138,7 @@ function addRemoveBookButton() {
 }
 
 class FormController {
-  static openForm() {
+  static openAddBookForm() {
     document.getElementById("popupForm").style.display = "block";
   }
 
@@ -147,7 +151,7 @@ class FormController {
     ];
   }
 
-  static closeForm() {
+  static closeAddBookForm() {
     document.getElementById("popupForm").style.display = "none";
   }
 }
@@ -156,10 +160,10 @@ class PageButtonController {
   static addListeners() {
     document
       .getElementById("addBook")
-      .addEventListener("click", FormController.openForm);
+      .addEventListener("click", FormController.openAddBookForm);
     document
       .getElementById("cancelAddBook")
-      .addEventListener("click", FormController.closeForm);
+      .addEventListener("click", FormController.closeAddBookForm);
     document
       .getElementById("addToLibrary")
       .addEventListener("click", addBookToLibrary);
