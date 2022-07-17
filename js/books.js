@@ -137,12 +137,12 @@ class BookFunctionButtonsDiv {
   }
 }
 
-class BookPageBuilder {
+class BookDivBuilder {
   #title;
   #author;
   #pages;
   #read;
-  #bookPage;
+  #bookDiv;
   #titleH3;
   #authorH4;
   #pagesPara;
@@ -153,36 +153,46 @@ class BookPageBuilder {
     this.#author = currBook.author;
     this.#pages = currBook.pages;
     this.#read = currBook.read;
-    this.#bookPage = new BookDiv(i).getElement();
+    this.#bookDiv = new BookDiv(i).getElement();
     this.#titleH3 = new TitleH3(this.#title).getElement();
     this.#authorH4 = new AuthorH4(this.#author).getElement();
     this.#pagesPara = new PagesPara(this.#pages).getElement();
     this.#bookReadPara = new BookReadPara(this.#read).getElement();
     this.#bookFunctionsDiv = new BookFunctionButtonsDiv().getElement();
-    this.#bookPage.appendChild(this.#titleH3);
-    this.#bookPage.appendChild(this.#authorH4);
-    this.#bookPage.appendChild(this.#pagesPara);
-    this.#bookPage.appendChild(this.#bookReadPara);
-    this.#bookPage.appendChild(this.#bookFunctionsDiv);
+    this.#bookDiv.appendChild(this.#titleH3);
+    this.#bookDiv.appendChild(this.#authorH4);
+    this.#bookDiv.appendChild(this.#pagesPara);
+    this.#bookDiv.appendChild(this.#bookReadPara);
+    this.#bookDiv.appendChild(this.#bookFunctionsDiv);
   }
 
   getElement() {
-    return this.#bookPage;
+    return this.#bookDiv;
   }
 }
 
-function displayBookPage(pageNum = 0) {
-  const page = document.querySelector(".page");
-  document
-    .querySelectorAll(".book")
-    .forEach((book) => book.parentNode.removeChild(book));
-  for (let i = pageNum * 12; i < pageNum * 12 + 12; i++) {
-    let currBook = myLibrary[i];
-    if (currBook === undefined) {
-      continue;
-    } else {
-      let bookDiv = new BookPageBuilder(currBook, i).getElement();
-      page.appendChild(bookDiv);
+class BookPageBuilder {
+  #page;
+  #pageNum;
+  #myLibrary;
+  constructor(pageNum = 0) {
+    this.#page = document.querySelector(".page");
+    this.#pageNum = pageNum;
+    this.#myLibrary = myLibrary;
+  }
+
+  drawPage() {
+    document
+      .querySelectorAll(".book")
+      .forEach((book) => book.parentNode.removeChild(book));
+    for (let i = this.#pageNum * 12; i < this.#pageNum * 12 + 12; i++) {
+      let currBook = this.#myLibrary[i];
+      if (currBook === undefined) {
+        continue;
+      } else {
+        let bookDiv = new BookDivBuilder(currBook, i).getElement();
+        this.#page.appendChild(bookDiv);
+      }
     }
   }
 }
@@ -196,7 +206,8 @@ function addBookToLibrary() {
   myLibrary.push(newBook);
   FormController.closeAddBookForm();
   document.querySelector(".formContainer").reset();
-  displayBookPage();
+  let page = new BookPageBuilder();
+  page.drawPage();
 }
 
 function removeBookFromLibrary(e) {
@@ -204,7 +215,8 @@ function removeBookFromLibrary(e) {
     e.target.parentNode.parentNode.getAttribute("data-index")
   );
   myLibrary.splice(bookIndex, 1);
-  displayBookPage();
+  let page = new BookPageBuilder();
+  page.drawPage();
 }
 
 function changeReadStatusOnPage(e) {
@@ -212,7 +224,8 @@ function changeReadStatusOnPage(e) {
     e.target.parentNode.parentNode.getAttribute("data-index")
   );
   myLibrary[bookIndex].changeReadStatus();
-  displayBookPage();
+  let page = new BookPageBuilder();
+  page.drawPage();
 }
 
 class FormController {
