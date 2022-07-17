@@ -197,19 +197,6 @@ class BookPageBuilder {
   }
 }
 
-function addBookToLibrary() {
-  let title = document.getElementById("bookTitle").value;
-  let author = document.getElementById("bookAuthor").value;
-  let pages = document.getElementById("bookPages").value;
-  let read = document.querySelector('input[name="isBookRead"]:checked').value;
-  let newBook = new Book(title, author, pages, read);
-  myLibrary.push(newBook);
-  FormController.closeAddBookForm();
-  document.querySelector(".formContainer").reset();
-  let page = new BookPageBuilder();
-  page.drawPage();
-}
-
 function removeBookFromLibrary(e) {
   let bookIndex = parseInt(
     e.target.parentNode.parentNode.getAttribute("data-index")
@@ -248,6 +235,20 @@ class FormController {
 }
 
 class PageButtonController {
+  static addBookToLibrary() {
+    let bookData = FormController.getBookData();
+    let title = bookData[0];
+    let author = bookData[1];
+    let pages = bookData[2];
+    let read = bookData[3];
+    let newBook = new Book(title, author, pages, read);
+    myLibrary.push(newBook);
+    FormController.closeAddBookForm();
+    document.querySelector(".formContainer").reset();
+    let page = new BookPageBuilder();
+    page.drawPage();
+  }
+
   static addListeners() {
     document
       .getElementById("addBook")
@@ -257,7 +258,7 @@ class PageButtonController {
       .addEventListener("click", FormController.closeAddBookForm);
     document
       .getElementById("addToLibrary")
-      .addEventListener("click", addBookToLibrary);
+      .addEventListener("click", PageButtonController.addBookToLibrary);
   }
 }
 
