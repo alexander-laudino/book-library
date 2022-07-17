@@ -97,7 +97,11 @@ class ReadStatusButton {
     this.#button.setAttribute("type", "button");
     this.#button.setAttribute("class", "changeReadStatus");
     this.#button.textContent = "Change Read Status";
-    this.#button.addEventListener("click", changeReadStatusOnPage), false;
+    this.#button.addEventListener(
+      "click",
+      BookButtonController.changeReadStatusOnPage
+    ),
+      false;
   }
 
   getElement() {
@@ -112,7 +116,11 @@ class RemoveBookButton {
     this.#button.setAttribute("type", "button");
     this.#button.setAttribute("class", "removeBook");
     this.#button.textContent = "Remove from Library";
-    this.#button.addEventListener("click", removeBookFromLibrary, false);
+    this.#button.addEventListener(
+      "click",
+      BookButtonController.removeBookFromLibrary,
+      false
+    );
   }
 
   getElement() {
@@ -197,24 +205,6 @@ class BookPageBuilder {
   }
 }
 
-function removeBookFromLibrary(e) {
-  let bookIndex = parseInt(
-    e.target.parentNode.parentNode.getAttribute("data-index")
-  );
-  myLibrary.splice(bookIndex, 1);
-  let page = new BookPageBuilder();
-  page.drawPage();
-}
-
-function changeReadStatusOnPage(e) {
-  let bookIndex = parseInt(
-    e.target.parentNode.parentNode.getAttribute("data-index")
-  );
-  myLibrary[bookIndex].changeReadStatus();
-  let page = new BookPageBuilder();
-  page.drawPage();
-}
-
 class FormController {
   static openAddBookForm() {
     document.getElementById("popupForm").style.display = "block";
@@ -231,6 +221,26 @@ class FormController {
 
   static closeAddBookForm() {
     document.getElementById("popupForm").style.display = "none";
+  }
+}
+
+class BookButtonController {
+  static removeBookFromLibrary(e) {
+    let bookIndex = parseInt(
+      e.target.parentNode.parentNode.getAttribute("data-index")
+    );
+    myLibrary.splice(bookIndex, 1);
+    let page = new BookPageBuilder();
+    page.drawPage();
+  }
+
+  static changeReadStatusOnPage(e) {
+    let bookIndex = parseInt(
+      e.target.parentNode.parentNode.getAttribute("data-index")
+    );
+    myLibrary[bookIndex].changeReadStatus();
+    let page = new BookPageBuilder();
+    page.drawPage();
   }
 }
 
