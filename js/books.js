@@ -90,14 +90,19 @@ class BookFunctionsDiv {
   }
 }
 
-function addChangeReadStatusButton() {
-  let changeReadStatusButton = document.createElement("button");
-  changeReadStatusButton.setAttribute("type", "button");
-  changeReadStatusButton.setAttribute("class", "changeReadStatus");
-  changeReadStatusButton.textContent = "Change Read Status";
-  changeReadStatusButton.addEventListener("click", changeReadStatusOnPage),
-    false;
-  return changeReadStatusButton;
+class ReadStatusButton {
+  #button;
+  constructor() {
+    this.#button = document.createElement("button");
+    this.#button.setAttribute("type", "button");
+    this.#button.setAttribute("class", "changeReadStatus");
+    this.#button.textContent = "Change Read Status";
+    this.#button.addEventListener("click", changeReadStatusOnPage), false;
+  }
+
+  getElement() {
+    return this.#button;
+  }
 }
 
 function addRemoveBookButton() {
