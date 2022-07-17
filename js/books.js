@@ -22,7 +22,7 @@ class BookDiv {
     this.#div.setAttribute("data-index", `${i}`);
   }
 
-  getDiv() {
+  getElement() {
     return this.#div;
   }
 }
@@ -35,7 +35,7 @@ class TitleH3 {
     this.#h3.textContent = title;
   }
 
-  getH3() {
+  getElement() {
     return this.#h3;
   }
 }
@@ -48,14 +48,26 @@ class AuthorH4 {
     this.#h4.textContent = author;
   }
 
-  getH4() {
+  getElement() {
     return this.#h4;
+  }
+}
+
+class PagesPara {
+  #p;
+  constructor(pages) {
+    this.#p = document.createElement("p");
+    this.#p.textContent = `Pages: ${pages}`;
+  }
+
+  getElement() {
+    return this.#p;
   }
 }
 
 function addBookPages(currBook, bookDiv) {
   let bookPages = document.createElement("p");
-  bookPages.textContent = `Pages: ${currBook.pages}`;
+  bookPages;
   bookDiv.appendChild(bookPages);
 }
 
