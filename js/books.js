@@ -27,6 +27,19 @@ class BookDiv {
   }
 }
 
+class TitleH3 {
+  #h3;
+  constructor(title) {
+    this.#h3 = document.createElement("h3");
+    this.#h3.setAttribute("class", "bookTitle");
+    this.#h3.textContent = title;
+  }
+
+  getH3() {
+    return this.#h3;
+  }
+}
+
 function addBookToLibrary() {
   let title = document.getElementById("bookTitle").value;
   let author = document.getElementById("bookAuthor").value;
@@ -65,7 +78,7 @@ function displayBookPage(pageNum = 0) {
     if (currBook === undefined) {
       continue;
     } else {
-      let bookDiv = createBookDiv(i);
+      let bookDiv = new BookDiv(i);
       addBookTitle(currBook, bookDiv);
       addBookAuthor(currBook, bookDiv);
       addBookPages(currBook, bookDiv);
@@ -74,13 +87,6 @@ function displayBookPage(pageNum = 0) {
       page.appendChild(bookDiv);
     }
   }
-}
-
-function addBookTitle(currBook, bookDiv) {
-  let bookTitle = document.createElement("h3");
-  bookTitle.setAttribute("class", "bookTitle");
-  bookTitle.textContent = currBook.title;
-  bookDiv.appendChild(bookTitle);
 }
 
 function addBookAuthor(currBook, bookDiv) {
