@@ -137,6 +137,56 @@ class BookFunctionButtonsDiv {
   }
 }
 
+class BookPageBuilder {
+  #title;
+  #author;
+  #pages;
+  #read;
+  #bookPage;
+  #titleH3;
+  #authorH4;
+  #pagesPara;
+  #bookReadPara;
+  #bookFunctionsDiv;
+  constructor(currBook, i) {
+    this.#title = currBook.title;
+    this.#author = currBook.author;
+    this.#pages = currBook.pages;
+    this.#read = currBook.read;
+    this.#bookPage = new BookDiv(i).getElement();
+    this.#titleH3 = new TitleH3(this.#title).getElement();
+    this.#authorH4 = new AuthorH4(this.#author).getElement();
+    this.#pagesPara = new PagesPara(this.#pages).getElement();
+    this.#bookReadPara = new BookReadPara(this.#read).getElement();
+    this.#bookFunctionsDiv = new BookFunctionButtonsDiv().getElement();
+    this.#bookPage.appendChild(this.#titleH3);
+    this.#bookPage.appendChild(this.#authorH4);
+    this.#bookPage.appendChild(this.#pagesPara);
+    this.#bookPage.appendChild(this.#bookReadPara);
+    this.#bookPage.appendChild(this.#bookFunctionsDiv);
+  }
+
+  getElement() {
+    return this.#bookPage;
+  }
+}
+
+function displayBookPage(pageNum = 0) {
+  const page = document.querySelector(".page");
+  document
+    .querySelectorAll(".book")
+    .forEach((book) => book.parentNode.removeChild(book));
+  for (let i = pageNum * 12; i < pageNum * 12 + 12; i++) {
+    let currBook = myLibrary[i];
+    if (currBook === undefined) {
+      continue;
+    } else {
+      let bookDiv = new BookPageBuilder(currBook, i).getElement();
+      page.appendChild(bookDiv);
+    }
+  }
+}
+
 function addBookToLibrary() {
   let title = document.getElementById("bookTitle").value;
   let author = document.getElementById("bookAuthor").value;
@@ -163,27 +213,6 @@ function changeReadStatusOnPage(e) {
   );
   myLibrary[bookIndex].changeReadStatus();
   displayBookPage();
-}
-
-function displayBookPage(pageNum = 0) {
-  const page = document.querySelector(".page");
-  document
-    .querySelectorAll(".book")
-    .forEach((book) => book.parentNode.removeChild(book));
-  for (let i = pageNum * 12; i < pageNum * 12 + 12; i++) {
-    let currBook = myLibrary[i];
-    if (currBook === undefined) {
-      continue;
-    } else {
-      let bookDiv = new BookDiv(i);
-      addBookTitle(currBook, bookDiv);
-      addBookAuthor(currBook, bookDiv);
-      addBookPages(currBook, bookDiv);
-      addIsBookRead(currBook, bookDiv);
-      addBookFunctionButtons(bookDiv);
-      page.appendChild(bookDiv);
-    }
-  }
 }
 
 class FormController {
