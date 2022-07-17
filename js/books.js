@@ -65,11 +65,17 @@ class PagesPara {
   }
 }
 
-function addIsBookRead(currBook, bookDiv) {
-  let bookRead = document.createElement("p");
-  bookRead.setAttribute("class", "isBookRead");
-  bookRead.textContent = `Book read: ${currBook.read}`;
-  bookDiv.appendChild(bookRead);
+class BookReadPara {
+  #p;
+  constructor(read) {
+    this.#p = document.createElement("p");
+    this.#p.setAttribute("class", "isBookRead");
+    this.#p.textContent = `Book read: ${read}`;
+  }
+
+  getElement() {
+    return this.#p;
+  }
 }
 
 function addBookToLibrary() {
