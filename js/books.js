@@ -1,4 +1,10 @@
-let myLibrary = [];
+class Library {
+  #myLibrary = [];
+
+  getBooks() {
+    return this.#myLibrary;
+  }
+}
 
 class Book {
   constructor(title, author, pages, read) {
@@ -273,3 +279,4 @@ class PageButtonController {
 }
 
 PageButtonController.addListeners();
+let myLibrary = new Library().getBooks();
