@@ -65,12 +65,6 @@ class PagesPara {
   }
 }
 
-function addBookPages(currBook, bookDiv) {
-  let bookPages = document.createElement("p");
-  bookPages;
-  bookDiv.appendChild(bookPages);
-}
-
 function addIsBookRead(currBook, bookDiv) {
   let bookRead = document.createElement("p");
   bookRead.setAttribute("class", "isBookRead");
